@@ -64,6 +64,17 @@ font-family: 'IBM Plex Sans', 'Hanken Grotesk', 'Barlow', 'Host Grotesk', 'DM Sa
 - Letter spacing on display/h1: `tracking-tight` (-0.02em).
 - Captions and labels: `tracking-wide uppercase text-xs`.
 
+### Typographic details
+
+The Swiss style depends on typographic precision. These rules are non-negotiable:
+
+- Use the ellipsis character `…`, never three periods `...`.
+- Use curly quotes `"` `"` and `'` `'`, never straight quotes `"` `'`.
+- Loading and progress states end with an ellipsis: `Loading…`, `Saving…`.
+- Number columns and tables use `font-variant-numeric: tabular-nums` (Tailwind: `tabular-nums`) so digits align vertically.
+- Headings use `text-wrap: balance` (Tailwind: `text-balance`) to prevent widows. Body paragraphs use `text-pretty` where supported.
+- Non-breaking spaces between value and unit, and inside brand names: `10&nbsp;MB`, `⌘&nbsp;K`.
+
 ---
 
 ## Color System
@@ -210,6 +221,24 @@ darkMode: 'media'
 
 Every color token has a `dark:` variant. See the stone palette table above. Never use `bg-black` or `bg-white` — always use stone scale.
 
+### `color-scheme`
+
+Tailwind only restyles your code. The browser still renders scrollbars, native form controls, and the canvas before CSS loads using its own defaults. Without `color-scheme`, a Swiss page in dark mode shows light scrollbars and light-mode native inputs against `bg-stone-950`.
+
+Always declare both schemes on `<html>`:
+
+```css
+html { color-scheme: light dark; }
+```
+
+Or via meta tag (parsed before CSS, prevents flash):
+
+```html
+<meta name="color-scheme" content="light dark">
+```
+
+Also set `<meta name="theme-color">` to match the page background so the mobile browser chrome blends in.
+
 ---
 
 ## Gotchas
@@ -226,8 +255,23 @@ Every color token has a `dark:` variant. See the stone palette table above. Neve
 - **Tables on mobile need `overflow-x-auto`.** Never let a wide table break mobile layout.
 - **Touch targets minimum 44px.** Buttons, links, and nav items must be tappable on mobile.
 - **Fluid type, not fixed.** Use responsive type classes (`text-3xl md:text-5xl`) or `clamp()` — never a single fixed size that works only at one viewport.
+- **Never `outline-none` without a focus replacement.** Interactive elements need a visible focus indicator. Use `focus-visible:ring-2 focus-visible:ring-stone-900 dark:focus-visible:ring-stone-50` (or the accent) instead. Prefer `:focus-visible` over `:focus` so the ring only appears on keyboard navigation.
+- **Honor `prefers-reduced-motion`.** If you add transitions or animations, gate them: `motion-safe:transition motion-reduce:transition-none`. Animate only `transform` and `opacity`. Never `transition: all`.
+- **Set `color-scheme: light dark` on `<html>`.** Otherwise scrollbars and native form controls stay light in dark mode.
+- **Straight quotes and `...` are bugs.** Use curly quotes and the `…` character.
 
 ---
+
+## Behavior, accessibility, and quality
+
+This skill is an aesthetic and visual system. It does not cover accessibility, focus management, form behavior, hydration, performance, or interaction quality.
+
+For those, defer to the Vercel Web Interface Guidelines, which are framework-agnostic and complementary:
+
+- Skill: `vercel-labs/agent-skills/web-design-guidelines`
+- Raw rules: https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md
+
+After applying Swiss styling, fetch the rules above and audit the result for accessibility, focus states, form behavior, animation safety, performance, and i18n. Treat findings as required fixes, not suggestions. Where the two systems overlap (typography niceties, dark mode, focus rings), the rules already inlined in this SKILL.md take precedence.
 
 ## When to read reference files
 
