@@ -4,6 +4,10 @@ A Swiss International Style design system for AI agents. Grotesque typography, r
 
 [swiss.ziki.boo](https://swiss.ziki.boo)
 
+## Demo
+
+[![swiss-design-skill demo](demo-thumb.jpg)](demo.mp4)
+
 ## Install
 
 ```sh
