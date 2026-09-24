@@ -58,6 +58,10 @@ Primary: **IBM Plex Sans** (Google Fonts)
 
 Fallbacks: Hanken Grotesk · Barlow · Host Grotesk · DM Sans
 
+## More Skills
+
+Browse more skills at [zeke/skills](https://github.com/zeke/skills).
+
 ## License
 
 MIT
