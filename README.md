@@ -58,6 +58,14 @@ Primary: **IBM Plex Sans** (Google Fonts)
 
 Fallbacks: Hanken Grotesk · Barlow · Host Grotesk · DM Sans
 
+
+## Before/after example
+
+- Before: https://skill-fixture-before.theroost.dev
+- After: https://swiss-design-after.theroost.dev
+
+Illustrative, community-contributed example; not an official demo or benchmark.
+
 ## More Skills
 
 Browse more skills at [zeke/skills](https://github.com/zeke/skills).
